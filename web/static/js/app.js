@@ -29,7 +29,8 @@ function sendNewMessage(msg) {
   channel.push("new_msg", msg);
 }
 
-var elmApp = Elm.fullscreen(Elm.Main, {messages: {userName: "", text: ""}});
+var container = document.getElementById('elm-main');
+var elmApp = Elm.embed(Elm.Main, container, {messages: {userName: "", text: ""}});
 channel.on("new_msg", msg => {
   console.log("Got message: ", msg);
   elmApp.ports.messages.send(msg);
